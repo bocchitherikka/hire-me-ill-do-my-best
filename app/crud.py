@@ -25,10 +25,9 @@ def create_task(
         db: Session,
         task: TaskCreate
 ) -> Type[TaskModel]:
-    db_task = Task(
+    db_task = TaskModel(
         name=task.name,
-        description=task.description,
-        status=task.status
+        description=task.description
     )
     db.add(db_task)
     db.commit()
@@ -44,7 +43,7 @@ def update_task(
     db_task = db.get(TaskModel, task_id)
     if not db_task:
         return None
-    update_data = task_update.dict()
+    update_data = task_update.dict(exclude_unset=True)
     for key, value in update_data.items():
         setattr(db_task, key, value)
     db.commit()

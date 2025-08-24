@@ -1,4 +1,5 @@
 from enum import Enum
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy import Column, Integer, String
 
 from .database import Base
@@ -16,4 +17,4 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     description = Column(String)
-    status = Column(Enum(TaskStatus), default=TaskStatus.created)
+    status = Column(SQLEnum(TaskStatus), default=TaskStatus.created)
