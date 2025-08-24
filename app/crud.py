@@ -2,7 +2,6 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from typing import Type, Sequence
 
-from app.models import Task
 from .models import Task as TaskModel
 from .schemas import Task, TaskCreate, TaskUpdate
 
